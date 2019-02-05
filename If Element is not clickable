@@ -1,0 +1,47 @@
+
+How to solve Element is not clickable at point in Selenium
+
+
+*************************************************************************************************
+ 
+WebElement elementToClick = driver.findElement(By.xpath("Your xpath"));
+ 
+// Scroll the browser to the element's Y position  (Repeat the same for X position)
+ 
+((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+elementToClick.getLocation().y+")");
+ 
+elementToClick.click();
+
+*************************************************************************************************
+
+WebDriverWait wait=new WebDriverWait(driver,30)
+WebElement login=wait. until(ExpectedConditions.visibilityOfElementLocated(By.xpath(“//p[text()=’Web’])));
+login.click();
+
+
+If it doesn't work means other element is overlapping, PLease use below code
+***************************************************************************************************
+
+WebDriverWait wait=new WebDriverWait(driver,30)
+boolean invisible = wait. until(ExpectedConditions.invisibilityOfElementLocated(By.id("preloaded")));  (Take the id from the error console)
+if(invisible)
+{
+WebElement login=wait. until(ExpectedConditions.visibilityOfElementLocated(By.xpath(“//p[text()=’Web’])));
+login.click();
+
+}
+
+*****************************************************************************************************
+Another ways are
+
+- JS
+- Action move to element
+
+//Press tab to shift focus to time field
+
+WebElement dateBox = driver.findElement(By.xpath("//form//input[@name='bdaytime']")); 
+dateBox.sendKeys(Keys.TAB);
+
+********************************************************************************************************
+
+
