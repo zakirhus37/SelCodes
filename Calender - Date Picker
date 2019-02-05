@@ -1,0 +1,74 @@
+Picking the date
+
+
+WebElement dataWidget = driver.findElement(By.id("ui-datapicker-div"));
+List <webelement> rows=dataWidget.findElements(By.tagName("tr"));
+List <webelement> columns=dataWidget.findElements(By.tagName("td"));
+for (WebElement cell: columns){
+  //Select xx. Date
+  if(cell.getText().equals("15")){
+    cell.findElement(By.linkText("15")).click();
+    break;
+  }
+}
+**************************************************************************************
+
+driver.navigate().to("https://www.redbus.in/");
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+driver.manage().window().maximize();
+  
+  //This will select From date 
+  WebElement elementFromDate = driver.findElement(By.id("onward_cal"));
+  ((JavascriptExecutor)driver).executeScript ("document.getElementById('onward_cal').removeAttribute('readonly',0);"); // Enables the from date box
+  elementFromDate.clear();
+  elementFromDate.sendKeys("18-Aug-2017"); //Enter date in required format
+
+
+
+((JavascriptExecutor)driver).executeScript ("document.getElementById('toDate').removeAttribute('readonly',0);"); // Enables the from date box
+
+WebElement toDateBox= driver.findElement(By.id("toDate"));
+toDateBox.clear();
+toDateBox.sendKeys("15-Dec-2014"); //Enter date in required format
+
+*****************************************************************************
+
+####### MAIN #######
+
+WebElement dataWidget = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[1]"));
+		  
+		  List<WebElement> columns =dataWidget.findElements(By.tagName("td"));
+		  
+		  int count =columns.size();
+		  System.out.println(count);
+		 
+		for(int i=0; i<columns.size(); i++)
+		  {
+		  System.out.println(columns.get(i).getText());
+
+                   if(columns.get(i).getText().equals("16"))
+			{
+ 				columns.get(i).click();
+				break;
+		  
+		   	}
+		   }	
+
+
+
+**************************************************************************		
+
+		for (WebElement cell: columns) {
+	            
+		    /*
+	            //If you want to click 18th Date
+	            if (cell.getText().equals("18")) {
+	            */
+
+	            //Select Today's Date
+	            if (cell.getText().equals(today)) {
+	                cell.click();
+	                break;
+	            }
+	        }
+
