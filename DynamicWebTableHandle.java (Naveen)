@@ -1,6 +1,9 @@
 
 xpath for tables will be always = //*[@id='vContactsForm']/table/tbody/tr[4]/td[2]
 
+//for getting the rowcnt and column count
+List <WebElements> element = driver.findElements(By.xpath("//*[@id='vContactsForm']/table/tbody/tr"));
+
 
 
 package SeleniumSessions;
