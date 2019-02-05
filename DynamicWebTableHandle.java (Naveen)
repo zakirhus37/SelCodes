@@ -1,3 +1,8 @@
+
+xpath for tables will be always = //*[@id='vContactsForm']/table/tbody/tr[4]/td[2]
+
+
+
 package SeleniumSessions;
 
 import java.util.concurrent.TimeUnit;
