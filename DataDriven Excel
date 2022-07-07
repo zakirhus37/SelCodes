@@ -1,0 +1,40 @@
+public class Sample2 extends Base_Class {
+	
+	@Test	
+	public static void testdata() throws Throwable {
+		
+		File f=new File("C:\\Users\\Desktop\\backup\\CamsdataTask\\sampletestdata.xlsx");
+		FileInputStream fis=new FileInputStream(f);
+		Workbook wb = new XSSFWorkbook(fis);	
+		Sheet ws = wb.getSheet("Sheet1");
+		int rowCount = ws.getPhysicalNumberOfRows();
+		int cellCount = ws.getRow(1).getPhysicalNumberOfCells();
+		for (int i = 1; i < rowCount; i++) {
+	
+			for (int j = 1; j < cellCount; j++) {
+				String user = ws.getRow(i).getCell(0).getStringCellValue();
+				System.out.println("Username:"+user);
+				String pass = ws.getRow(i).getCell(1).getStringCellValue();
+				System.out.println("Password:"+pass);
+			
+			}
+		}		
+				rowCount=rowCount-1;
+				System.out.println("No. of Username available : "+rowCount);
+				System.out.println("Enter the Username Index number:");
+				Scanner s = new Scanner(System.in);
+				int i=s.nextInt();
+				s.close();				
+				getBrowser("chrome");
+				getUrl("http://www.testyou.in/Login.aspx");
+				String user = ws.getRow(i).getCell(0).getStringCellValue();
+				WebElement us=driver.findElement(By.id("ctl00_CPHContainer_txtUserLogin"));
+				us.clear();
+				us.sendKeys(user);
+				String pass = ws.getRow(i).getCell(1).getStringCellValue();
+				driver.findElement(By.id("ctl00_CPHContainer_txtPassword")).sendKeys(pass);
+				driver.findElement(By.id("ctl00_CPHContainer_btnLoginn")).click();
+				Thread.sleep(1000);
+			wb.close();
+			driver.quit();
+	}
